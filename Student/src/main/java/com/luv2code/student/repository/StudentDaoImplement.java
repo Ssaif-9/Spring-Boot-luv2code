@@ -1,7 +1,6 @@
 package com.luv2code.student.repository;
 
 import com.luv2code.student.entity.Student;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
