@@ -46,6 +46,7 @@ public class StudentDaoImplement implements StudentDaoInterface {
     public List<Student> getAllStudents() {
         return entityManager.createQuery("from Student order by lastName", Student.class).getResultList();
     }
+
     @Override
     @Transactional
     public void updateStudent(Student student){
