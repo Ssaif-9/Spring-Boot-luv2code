@@ -38,22 +38,5 @@ public class restController {
         return students.stream().filter(student-> Objects.equals(student.getLastName(), "sherif")).findFirst().get();
     }
 
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException ex){
-        StudentErrorResponse response = new StudentErrorResponse();
-        response.setStatus(HttpStatus.NOT_FOUND.value());
-        response.setMessage(ex.getMessage());
-        response.setTimeStamp(System.currentTimeMillis());
 
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException(Exception ex){
-        StudentErrorResponse response = new StudentErrorResponse();
-        response.setStatus(HttpStatus.BAD_REQUEST.value());
-        response.setMessage(ex.getMessage());
-        response.setTimeStamp(System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
 }
