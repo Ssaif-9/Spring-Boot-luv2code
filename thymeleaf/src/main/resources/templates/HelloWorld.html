@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
-    <link rel="stylesheet"
-            th:href="@{/css/demo.css}">
 </head>
 <body>
-    <p th:text="'Time In Server : '+${theDate}" class="funny" >
+    Hello World from Spring !
+    <br><br>
+    Student Name : <span th:text="${param.studentName}"></span>
+    <br><br>
+    Student Name : <span th:text="${NAME}"></span>
 </body>
 </html>
