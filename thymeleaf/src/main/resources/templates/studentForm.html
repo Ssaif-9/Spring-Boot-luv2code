@@ -15,6 +15,11 @@
   <span th:if="${#fields.hasErrors('lastName')}"
         th:errors="*{lastName}"></span>
   <br><br>
+  Age(12~33): <input type="text" th:field="*{age}">
+  <span th:if="${#fields.hasErrors('age')}"
+        th:errors="*{age}"></span>
+  <br><br>
+
   Country:
   <select th:field="*{country}">
   <option th:each="oneCountry:${countries}" th:value="${oneCountry}" th:text="${oneCountry}"></option>
