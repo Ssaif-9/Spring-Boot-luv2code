@@ -5,8 +5,17 @@
     <title>Student Confirm</title>
 </head>
 <body>
-
+<h1>Confirm Student Registration</h1>
  Student Name : <span th:text="${student.firstName}+' '+${student.lastName}"></span>
+<br><br>
+ Country : <span th:text="${student.country}"></span>
+<br><br>
+Favorite Programming Language : <span th:text="${student.programmingLanguage}"/>
+<br><br>
+Favorite System  :
+<ul>
+    <li th:each="oneSystemm:${student.system}"  th:text="${oneSystemm}"/>
+</ul>
 
 </body>
 </html>

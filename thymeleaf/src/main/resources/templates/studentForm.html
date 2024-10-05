@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title>Student Form</title>
@@ -7,9 +7,37 @@
 <body>
 
 <form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+  <h1> Student Registration </h1>
+  <br><br>
   firstname:<input type="text" th:field="*{firstName}"/>
   <br><br>
   Lastname:<input type="text" th:field="*{lastName}"/>
+  <br><br>
+  Country:
+  <select th:field="*{country}">
+  <option th:each="oneCountry:${countries}" th:value="${oneCountry}" th:text="${oneCountry}"></option>
+    <!--
+    <option th:value="Brazil" >Brazil</option>
+    <option th:value="China" >China</option>
+    <option th:value="Egypt" >Egypt</option>
+    -->
+</select>
+  <br><br>
+  Favorite Programming Language :
+  <input type="radio" th:field="*{programmingLanguage}" th:each="oneLanguage :${languages}" th:value="${oneLanguage}" th:text="${oneLanguage}">
+  <!--
+  <input type="radio" th:field="*{programmingLanguage}" th:value="Java" >Java</input>
+  <input type="radio" th:field="*{programmingLanguage}" th:value="C" >C</input>
+  <input type="radio" th:field="*{programmingLanguage}" th:value="SQL" >SQL</input>
+  -->
+  <br><br>
+  Favorite System:
+  <input type="checkbox" th:field="*{system}" th:each="oneSystem:${systems}" th:value="${oneSystem}" th:text="${oneSystem}" >
+  <!--
+  <input type="checkbox" th:field="*{system}" th:value="MacOs">MacOs</input>
+  <input type="checkbox" th:field="*{system}" th:value="Windows">Windows</input>
+  <input type="checkbox" th:field="*{system}" th:value="Linux">Linux</input>
+  -->
   <br><br>
   <input type="submit" value="submit"/>
 </form>
