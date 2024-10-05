@@ -19,9 +19,10 @@ public class Student {
     @Size(min = 1 ,message = "must more than 1 character")
     private String lastName;
 
+    @NotNull(message = "is Required")
     @Min(value = 12 ,message = "must greater than 12")
     @Max(value = 33 , message = "must less than 33")
-    private int age;
+    private Integer age;
 
     @Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$",message = "Valid input , must in form (dd-mm-yyyy)")
     private String birthDate;
