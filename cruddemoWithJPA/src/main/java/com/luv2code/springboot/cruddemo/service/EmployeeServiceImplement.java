@@ -2,7 +2,7 @@ package com.luv2code.springboot.cruddemo.service;
 
 import com.luv2code.springboot.cruddemo.entity.Employee;
 import com.luv2code.springboot.cruddemo.exception.CustomException;
-import com.luv2code.springboot.cruddemo.repository.EmployeeRepositoryInterface;
+import com.luv2code.springboot.cruddemo.dao.EmployeeRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
