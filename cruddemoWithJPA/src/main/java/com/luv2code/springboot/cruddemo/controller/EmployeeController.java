@@ -4,8 +4,7 @@ import com.luv2code.springboot.cruddemo.entity.Employee;
 import com.luv2code.springboot.cruddemo.service.EmployeeServiceInterface;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +25,29 @@ public class EmployeeController {
         return "EmployeeList";
     }
 
+    @GetMapping("/add")
+    public String addEmployeeForm(Model model){
+        model.addAttribute("employees", new Employee());
+        return "addForm";
+    }
+
+    @GetMapping("/update")
+    public String updateEmployeeForm(@RequestParam("employeeId") int employeeId,Model model){
+        Employee employee = employeeServiceInterface.getEmployeeById(employeeId);
+        model.addAttribute("employees",employee );
+        return "addForm";
+    }
+
+    @PostMapping("/add")
+    public String addEmployee(@ModelAttribute("employee") Employee employee){
+        employeeServiceInterface.saveEmployee(employee);
+        return "redirect:list";
+    }
+
+    @GetMapping("/delete")
+    public String deleteEmployee(@RequestParam("employeeId") int employeeId){
+        employeeServiceInterface.deleteEmployee(employeeId);
+        return "redirect:list";
+    }
 
 }
