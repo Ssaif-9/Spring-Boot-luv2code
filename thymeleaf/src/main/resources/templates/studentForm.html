@@ -9,50 +9,93 @@
 <form th:action="@{/processStudentForm}" th:object="${student}" method="post">
   <h1> Student Registration </h1>
   <br><br>
-  firstname:<input type="text" th:field="*{firstName}"/>
+  Firstname :
+  <input type="text" th:field="*{firstName}"/>
   <br><br>
-  Lastname(*):<input type="text" th:field="*{lastName}"/>
+  Lastname(*) :
+  <input type="text" th:field="*{lastName}"/>
   <span th:if="${#fields.hasErrors('lastName')}"
         th:errors="*{lastName}"></span>
   <br><br>
-  Birthday (dd-mm-yyyy) : <input type="text" th:field="*{birthDate}">
+  Birthday (dd-mm-yyyy) :
+  <input type="text" th:field="*{birthDate}">
   <span th:if="${#fields.hasErrors('birthDate')}"
         th:errors="*{birthDate}"></span>
   <br><br>
 
-  Age(12~33): <input type="text" th:field="*{age}">
+  Age(12~33) :
+  <input type="text" th:field="*{age}">
   <span th:if="${#fields.hasErrors('age')}"
         th:errors="*{age}"></span>
   <br><br>
-
-  Country:
+  Country :
   <select th:field="*{country}">
   <option th:each="oneCountry:${countries}" th:value="${oneCountry}" th:text="${oneCountry}"></option>
-    <!--
-    <option th:value="Brazil" >Brazil</option>
-    <option th:value="China" >China</option>
-    <option th:value="Egypt" >Egypt</option>
-    -->
-</select>
+  </select>
   <br><br>
   Favorite Programming Language :
   <input type="radio" th:field="*{programmingLanguage}" th:each="oneLanguage :${languages}" th:value="${oneLanguage}" th:text="${oneLanguage}">
-  <!--
-  <input type="radio" th:field="*{programmingLanguage}" th:value="Java" >Java</input>
-  <input type="radio" th:field="*{programmingLanguage}" th:value="C" >C</input>
-  <input type="radio" th:field="*{programmingLanguage}" th:value="SQL" >SQL</input>
-  -->
   <br><br>
   Favorite System:
   <input type="checkbox" th:field="*{system}" th:each="oneSystem:${systems}" th:value="${oneSystem}" th:text="${oneSystem}" >
-  <!--
-  <input type="checkbox" th:field="*{system}" th:value="MacOs">MacOs</input>
-  <input type="checkbox" th:field="*{system}" th:value="Windows">Windows</input>
-  <input type="checkbox" th:field="*{system}" th:value="Linux">Linux</input>
-  -->
   <br><br>
   <input type="submit" value="submit"/>
 </form>
-
 </body>
 </html>
+
+<style>
+  form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+
+  input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  input[type="radio"], input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  span {
+    color: red;
+    font-size: 12px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  br {
+    margin-bottom: 10px;
+  }
+
+</style>
