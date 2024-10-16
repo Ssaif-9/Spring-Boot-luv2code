@@ -10,6 +10,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/employees")
+
 public class EmployeeController {
 
     private EmployeeServiceInterface employeeServiceInterface;
@@ -31,6 +32,12 @@ public class EmployeeController {
         return "addForm";
     }
 
+    @PostMapping("/add")
+    public String addEmployee(@ModelAttribute("employee") Employee employee){
+        employeeServiceInterface.saveEmployee(employee);
+        return "redirect:list";
+    }
+
     @GetMapping("/update")
     public String updateEmployeeForm(@RequestParam("employeeId") int employeeId,Model model){
         Employee employee = employeeServiceInterface.getEmployeeById(employeeId);
@@ -38,16 +45,9 @@ public class EmployeeController {
         return "addForm";
     }
 
-    @PostMapping("/add")
-    public String addEmployee(@ModelAttribute("employee") Employee employee){
-        employeeServiceInterface.saveEmployee(employee);
-        return "redirect:list";
-    }
-
     @GetMapping("/delete")
     public String deleteEmployee(@RequestParam("employeeId") int employeeId){
         employeeServiceInterface.deleteEmployee(employeeId);
         return "redirect:list";
     }
-
 }
