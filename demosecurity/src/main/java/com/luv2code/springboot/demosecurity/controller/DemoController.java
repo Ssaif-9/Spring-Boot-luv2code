@@ -10,4 +10,23 @@ public class DemoController {
     public String showHome(){
         return "home";
     }
+    @GetMapping("/showLoginForm")
+    public String showLoginForm(){
+        return "fancy-login";
+    }
+
+    @GetMapping("/leaders")
+    public String showLeaders(){
+        return "leaders";
+    }
+
+    @GetMapping("/system")
+    public String showSystem(){
+        return "system";
+    }
+
+    @GetMapping("/accessDenied")
+    public String showAccessDenied(){
+        return "denyPage";
+    }
 }
