@@ -7,8 +7,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurity {
@@ -35,27 +40,41 @@ public class DemoSecurity {
 
         return http.build();
     }
+//    @Bean
+//    public UserDetailsManager userDetails(DataSource dataSource) {
+//        return new JdbcUserDetailsManager(dataSource);
+//    }
+
     @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-
-        UserDetails saif = User.builder()
-                .username("saif")
-                .password("{noop}12345")
-                .roles("ADMIN","MANAGER","EMPLOYEE")
-                .build();
-
-        UserDetails omar =User.builder()
-                .username("omar")
-                .password("{noop}12345")
-                .roles("EMPLOYEE")
-                .build();
-
-        UserDetails ahmed =User.builder()
-                .username("ahmed")
-                .password("{noop}12345")
-                .roles("MANAGER","EMPLOYEE")
-                .build();
-
-        return new InMemoryUserDetailsManager(saif,omar,ahmed);
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+        userDetailsManager.setUsersByUsernameQuery("select user_id ,pw,active  from members where user_id=?");
+        userDetailsManager.setAuthoritiesByUsernameQuery("select user_id ,role from roles where user_id=?");
+        return userDetailsManager;
     }
+
+
+//    @Bean
+//    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+//
+//        UserDetails saif = User.builder()
+//                .username("saif")
+//                .password("{noop}12345")
+//                .roles("ADMIN","MANAGER","EMPLOYEE")
+//                .build();
+//
+//        UserDetails omar =User.builder()
+//                .username("omar")
+//                .password("{noop}12345")
+//                .roles("EMPLOYEE")
+//                .build();
+//
+//        UserDetails ahmed =User.builder()
+//                .username("ahmed")
+//                .password("{noop}12345")
+//                .roles("MANAGER","EMPLOYEE")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(saif,omar,ahmed);
+//    }
 }
