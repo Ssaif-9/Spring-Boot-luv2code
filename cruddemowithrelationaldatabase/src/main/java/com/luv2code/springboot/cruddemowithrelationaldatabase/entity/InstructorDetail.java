@@ -25,7 +25,8 @@ public class InstructorDetail {
     @Column(name="hobby")
     private String hobby;
 
-    @OneToOne(mappedBy = "instructorDetail" , cascade = CascadeType.ALL)
-    private Instructor instructor;
+    /*BI-DIRECTIONAL */
+//    @OneToOne(mappedBy = "instructorDetail" , cascade = CascadeType.ALL)
+//    private Instructor instructor;
 
 }

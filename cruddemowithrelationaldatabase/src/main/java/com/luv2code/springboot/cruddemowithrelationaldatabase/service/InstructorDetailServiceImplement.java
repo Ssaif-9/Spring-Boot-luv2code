@@ -1,11 +1,9 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.service;
 
-import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.InstructorDetail;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.reposatity.InstructorDetailRepoInterface;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
