@@ -16,6 +16,7 @@ public class InstructorServiceImplement implements InstructorServiceInterface{
     public InstructorServiceImplement(InstructorRepoInterface instructorRepo) {
         this.instructorRepo = instructorRepo;
     }
+
     @Override
     public void saveInstructor(Instructor instructor) {
         instructorRepo.save(instructor);
