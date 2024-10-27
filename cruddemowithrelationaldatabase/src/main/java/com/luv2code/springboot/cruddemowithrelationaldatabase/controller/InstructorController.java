@@ -1,8 +1,10 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.controller;
 
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.service.InstructorServiceInterface;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +39,11 @@ public class InstructorController {
     @DeleteMapping("/{instructorId}")
     public void deleteInstructor(@PathVariable int instructorId) {
         instructorServiceInterface.deleteInstructorById(instructorId);
+    }
+
+    @ExceptionHandler(value = CustomException.class)
+    public String handleCustomException(CustomException e) {
+        return e.getMessage();
     }
 
 }

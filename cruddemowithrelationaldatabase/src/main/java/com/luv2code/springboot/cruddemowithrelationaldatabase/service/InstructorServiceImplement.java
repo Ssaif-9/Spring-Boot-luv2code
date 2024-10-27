@@ -1,7 +1,10 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.service;
 
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.GeneralException;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.reposatity.InstructorRepoInterface;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +27,10 @@ public class InstructorServiceImplement implements InstructorServiceInterface{
     @Override
     public Instructor findInstructorById(int id) {
         Optional<Instructor> instructorOptional =instructorRepo.findById(id);
-        return instructorOptional.orElse(null);
+        if(instructorOptional.isPresent())
+            return instructorOptional.get();
+        else
+            throw new CustomException("505","Not Found ","Not Found Instructor with id : "+id, HttpStatus.NOT_FOUND);
     }
 
     @Override
