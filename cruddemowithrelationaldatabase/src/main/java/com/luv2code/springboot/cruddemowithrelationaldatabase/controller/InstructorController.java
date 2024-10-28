@@ -2,9 +2,12 @@ package com.luv2code.springboot.cruddemowithrelationaldatabase.controller;
 
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.ExceptionEntity;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.service.InstructorServiceInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,8 +45,9 @@ public class InstructorController {
     }
 
     @ExceptionHandler(value = CustomException.class)
-    public String handleCustomException(CustomException e) {
-        return e.getMessage();
+    public ResponseEntity<ExceptionEntity> handleCustomException(CustomException e) {
+        ExceptionEntity exceptionEntity = new ExceptionEntity(e.getExceptionCode(),e.getExceptionMessage(),e.getExceptionDetails(),e.getExceptionHttpStatus());
+        return new ResponseEntity<ExceptionEntity>(exceptionEntity, HttpStatus.NOT_FOUND);
     }
 
 }
