@@ -5,7 +5,6 @@ import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomEx
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.ExceptionEntity;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.service.InstructorServiceInterface;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +46,8 @@ public class InstructorController {
     @ExceptionHandler(value = CustomException.class)
     public ResponseEntity<ExceptionEntity> handleCustomException(CustomException e) {
         ExceptionEntity exceptionEntity = new ExceptionEntity(e.getExceptionCode(),e.getExceptionMessage(),e.getExceptionDetails(),e.getExceptionHttpStatus());
-        return new ResponseEntity<ExceptionEntity>(exceptionEntity, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionEntity, HttpStatus.NOT_FOUND);
     }
+
 
 }
