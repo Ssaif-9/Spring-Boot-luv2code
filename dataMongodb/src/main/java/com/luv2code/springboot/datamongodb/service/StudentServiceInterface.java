@@ -12,9 +12,13 @@ public interface StudentServiceInterface {
 
     void updateStudent(Student student);
 
+    void updateStudentEmail(String email,String name);
+
     void deleteStudent(String id);
 
     Student getStudent(String id);
+
+    Student getStudentByEmail(String email);
 
     List<Student> getAllStudents();
 

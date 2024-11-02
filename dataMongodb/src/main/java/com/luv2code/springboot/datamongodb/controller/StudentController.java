@@ -18,9 +18,14 @@ public class StudentController {
         return studentServiceInterface.getAllStudents();
     }
 
-    @GetMapping("/{studentId}")
+    @GetMapping("/id/{studentId}")
     public Student getStudent(@PathVariable String studentId) {
         return studentServiceInterface.getStudent(studentId);
+    }
+
+    @GetMapping({"/email/{studentEmail}"})
+    public Student getStudentByEmail(@PathVariable String studentEmail) {
+        return studentServiceInterface.getStudentByEmail(studentEmail);
     }
 
     @PostMapping()
@@ -36,6 +41,11 @@ public class StudentController {
     @PutMapping
     public void updateStudent(@RequestBody Student student) {
         studentServiceInterface.updateStudent(student);
+    }
+
+    @PutMapping("/custom")
+    public void updateStudent(@RequestParam String email ,@RequestParam String name) {
+        studentServiceInterface.updateStudentEmail(email, name);
     }
 
 }
