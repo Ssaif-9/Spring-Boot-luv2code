@@ -10,6 +10,4 @@ public interface StudentServiceInterface {
     void addStudent(Student student);
 
     void addStudentWithCourses(Student student);
-
-    List<Course> getStudentsAndCoursesByStudentId(Integer id);
 }

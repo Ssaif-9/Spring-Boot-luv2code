@@ -27,8 +27,4 @@ public class StudentServiceImplement implements StudentServiceInterface{
         studentRepoInterface.save(student);
     }
 
-    @Override
-    public List<Course> getStudentsAndCoursesByStudentId(Integer id) {
-        return studentRepoInterface.findStudentAndCourseByStudentId(id);
-    }
 }

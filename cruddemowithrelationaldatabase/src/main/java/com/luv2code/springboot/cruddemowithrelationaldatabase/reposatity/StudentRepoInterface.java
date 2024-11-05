@@ -12,6 +12,4 @@ import java.util.List;
 @Repository
 public interface StudentRepoInterface extends JpaRepository<Student, Integer> {
 
-    @Query("select s from Student s join fetch s.courses where s.id = :studentId")
-    List<Course> findStudentAndCourseByStudentId(@Param("studentId") Integer studentId);
 }

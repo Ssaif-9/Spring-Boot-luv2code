@@ -24,9 +24,4 @@ public class StudentController {
     public void addStudentWithCourses(@RequestBody Student student) {
         studentServiceInterface.addStudentWithCourses(student);
     }
-
-    @GetMapping("/getStudentAndCourse/{studentId}")
-    public List<Course> getStudentAndCourse(@PathVariable int studentId) {
-         return studentServiceInterface.getStudentsAndCoursesByStudentId(studentId);
-    }
 }
