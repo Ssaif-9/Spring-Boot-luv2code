@@ -36,16 +36,16 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
 
-//    @OneToMany(mappedBy = "instructor",
-//               fetch = FetchType.EAGER,
-//               cascade = { CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH, CascadeType.DETACH })
-//    private List<Course> courses;
+    @OneToMany(mappedBy = "instructor",
+               fetch = FetchType.EAGER,
+               cascade = { CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH, CascadeType.DETACH })
+    private List<Course> courses;
 
-//    public void addCourse(Course course) {
-//        if (courses == null) {
-//            courses = new ArrayList<>();
-//        }
-//        courses.add(course);
-//        course.setInstructor(this);
-//    }
+    public void addCourse(Course course) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+        }
+        courses.add(course);
+        course.setInstructor(this);
+    }
 }

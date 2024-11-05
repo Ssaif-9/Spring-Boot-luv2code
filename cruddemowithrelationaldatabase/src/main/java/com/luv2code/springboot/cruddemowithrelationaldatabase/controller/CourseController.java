@@ -30,6 +30,16 @@ public class CourseController {
         courseServiceInterface.addCourse(course);
     }
 
+    @PostMapping("/review")
+    public void addCourseAndReview(@RequestBody Course course) {
+        courseServiceInterface.addCourseAndReview(course);
+    }
+
+    @PostMapping("/student")
+    public void addCourseWithReviewAndStudent(@RequestBody Course course) {
+        courseServiceInterface.addCourseWithReviewAndStudent(course);
+    }
+
     @PutMapping()
     public void UpdateCourse(@RequestBody Course course) {
         courseServiceInterface.updateCourse(course);

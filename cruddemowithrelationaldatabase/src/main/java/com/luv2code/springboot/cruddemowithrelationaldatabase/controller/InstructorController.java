@@ -1,5 +1,6 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.controller;
 
+import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Course;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.ExceptionEntity;
@@ -21,6 +22,11 @@ public class InstructorController {
     @PostMapping()
     public void saveInstructor(@RequestBody Instructor instructor) {
         instructorServiceInterface.saveInstructor(instructor);
+    }
+
+    @PostMapping("/course")
+    public void saveInstructorWithCourse(@RequestBody Instructor instructor) {
+        instructorServiceInterface.saveInstructorWithCourses(instructor);
     }
 
     @GetMapping("/{instructorId}")

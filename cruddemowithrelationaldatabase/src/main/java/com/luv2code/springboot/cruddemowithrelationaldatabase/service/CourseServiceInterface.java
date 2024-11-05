@@ -19,4 +19,8 @@ public interface CourseServiceInterface {
 
     void updateCourse(Course course);
 
+    void addCourseAndReview(Course course);
+
+    void addCourseWithReviewAndStudent(Course course);
+
 }

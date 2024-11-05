@@ -1,5 +1,6 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.service;
 
+import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Course;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.GeneralException;
@@ -23,6 +24,15 @@ public class InstructorServiceImplement implements InstructorServiceInterface{
     public void saveInstructor(Instructor instructor) {
         instructorRepo.save(instructor);
     }
+
+    @Override
+    public void saveInstructorWithCourses(Instructor instructor) {
+        instructor.addCourse(new Course("python"));
+        instructor.addCourse(new Course("spring boot"));
+
+        instructorRepo.save(instructor);
+    }
+
 
     @Override
     public Instructor findInstructorById(int id) {
