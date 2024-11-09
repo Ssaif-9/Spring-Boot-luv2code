@@ -37,9 +37,16 @@ public class Instructor {
 
 
     @OneToMany(mappedBy = "instructor",
-               fetch = FetchType.EAGER,
-               cascade = { CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH, CascadeType.DETACH })
+               fetch = FetchType.LAZY,
+               cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+                           CascadeType.REFRESH, CascadeType.DETACH })
     private List<Course> courses;
+
+    public Instructor(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
     public void addCourse(Course course) {
         if (courses == null) {

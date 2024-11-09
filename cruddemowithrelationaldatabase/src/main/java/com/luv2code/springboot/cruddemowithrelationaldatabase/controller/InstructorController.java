@@ -1,11 +1,13 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.controller;
 
+import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.InstructorCourses;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Course;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.ExceptionEntity;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.service.InstructorServiceInterface;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,8 @@ public class InstructorController {
     }
 
     @PostMapping("/course")
-    public void saveInstructorWithCourse(@RequestBody Instructor instructor) {
-        instructorServiceInterface.saveInstructorWithCourses(instructor);
+    public void saveInstructorWithCourse(@RequestBody InstructorCourses instructorCourses) {
+        instructorServiceInterface.saveInstructorWithCourses(instructorCourses);
     }
 
     @GetMapping("/{instructorId}")
