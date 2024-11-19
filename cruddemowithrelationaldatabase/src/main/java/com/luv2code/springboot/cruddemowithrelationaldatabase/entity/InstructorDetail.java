@@ -1,10 +1,7 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -25,8 +22,7 @@ public class InstructorDetail {
     @Column(name="hobby")
     private String hobby;
 
-    /*BI-DIRECTIONAL */
-//    @OneToOne(mappedBy = "instructorDetail" , cascade = CascadeType.ALL)
-//    private Instructor instructor;
+    @OneToOne(mappedBy = "instructorDetail",cascade = CascadeType.ALL)
+    private Instructor instructor;
 
 }

@@ -1,10 +1,7 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table(name = "course")
 public class Course {
 
@@ -26,7 +24,8 @@ public class Course {
     private String title;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                          CascadeType.REFRESH, CascadeType.DETACH})
+                          CascadeType.REFRESH, CascadeType.DETACH},
+               fetch=FetchType.EAGER)
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 

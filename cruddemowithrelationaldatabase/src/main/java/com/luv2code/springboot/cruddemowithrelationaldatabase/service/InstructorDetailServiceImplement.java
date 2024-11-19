@@ -2,25 +2,24 @@ package com.luv2code.springboot.cruddemowithrelationaldatabase.service;
 
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.InstructorDetail;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.reposatity.InstructorDetailRepoInterface;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.reposatity.InstructorRepoInterface;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class InstructorDetailServiceImplement implements InstructorDetailServiceInterface{
 
     private final InstructorDetailRepoInterface instructorDetailRepo;
 
-    public InstructorDetailServiceImplement(InstructorDetailRepoInterface instructorDetailRepo) {
-        this.instructorDetailRepo = instructorDetailRepo;
-    }
-
-
-    @Override
-    public void saveInstructorDetail(InstructorDetail instructorDetail) {
-        instructorDetailRepo.save(instructorDetail);
-    }
+        //By logic,we must not add instructor detail for no where instructor !!
+//    @Override
+//    public void saveInstructorDetail(InstructorDetail instructorDetail) {
+//        instructorDetailRepo.save(instructorDetail);
+//    }
 
     @Override
     public InstructorDetail findInstructorDetailById(int id) {

@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface InstructorDetailServiceInterface {
 
-    void saveInstructorDetail(InstructorDetail instructorDetail);
+//    void saveInstructorDetail(InstructorDetail instructorDetail);
 
     InstructorDetail findInstructorDetailById(int id);
 

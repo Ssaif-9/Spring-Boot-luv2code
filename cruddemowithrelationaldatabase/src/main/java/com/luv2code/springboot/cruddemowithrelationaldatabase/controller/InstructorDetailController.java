@@ -18,10 +18,10 @@ public class InstructorDetailController {
 
     private final InstructorDetailServiceInterface instructorDetailServiceInterface;
 
-    @PostMapping
-    public void getInstructorDetail(@RequestBody InstructorDetail instructorDetail) {
-        instructorDetailServiceInterface.saveInstructorDetail(instructorDetail);
-    }
+//    @PostMapping
+//    public void getInstructorDetail(@RequestBody InstructorDetail instructorDetail) {
+//        instructorDetailServiceInterface.saveInstructorDetail(instructorDetail);
+//    }
 
     @GetMapping("/{instructorDetailId}")
     public InstructorDetail getInstructorDetail(@PathVariable int instructorDetailId) {

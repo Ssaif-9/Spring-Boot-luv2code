@@ -1,17 +1,18 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.service;
 
+import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.CourseDetail;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.CourseDto;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Course;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public interface CourseServiceInterface {
 
     void addCourse(Course course);
 
-    List<Course> findAllCourse();
+    List<CourseDto> findAllCourse();
 
     Course findCourseById(Integer id);
 
@@ -23,4 +24,5 @@ public interface CourseServiceInterface {
 
     void addCourseWithReviewAndStudent(Course course);
 
+    List<CourseDetail> findCoursesWithInstructorId(Integer id);
 }

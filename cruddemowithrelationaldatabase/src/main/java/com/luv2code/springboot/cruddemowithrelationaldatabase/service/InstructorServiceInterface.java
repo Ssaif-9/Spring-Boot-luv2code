@@ -1,18 +1,16 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.service;
 
-import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.InstructorCourses;
-import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Course;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.CourseDetail;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface InstructorServiceInterface {
 
     void saveInstructor(Instructor instructor);
-
-    void saveInstructorWithCourses(InstructorCourses instructorCourses);
 
     Instructor findInstructorById(int id);
 
@@ -21,4 +19,6 @@ public interface InstructorServiceInterface {
     void updateInstructor(Instructor instructor);
 
     void deleteInstructorById(int id);
+
+
 }
