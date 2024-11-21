@@ -1,10 +1,13 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.service;
 
 import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.CourseDetail;
+import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.InstructorDto;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Course;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.reposatity.InstructorRepoInterface;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +15,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class InstructorServiceImplement implements InstructorServiceInterface{
 
     private final InstructorRepoInterface instructorRepo;
-
-    public InstructorServiceImplement(InstructorRepoInterface instructorRepo) {
-        this.instructorRepo = instructorRepo;
-    }
+    private final ModelMapper modelMapper;
 
     @Override
     public void saveInstructor(Instructor instructor) {
@@ -57,6 +58,11 @@ public class InstructorServiceImplement implements InstructorServiceInterface{
     @Override
     public void deleteInstructorById(int id) {
         instructorRepo.deleteById(id);
+    }
+
+    @Override
+    public Instructor findInstructorWithCourses(Integer id) {
+        return instructorRepo.findInstructorByIdJoinFetch(id);
     }
 
 }

@@ -1,9 +1,6 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,6 +8,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class CourseDetail {
     private CourseDto course;
     private InstructorDto instructor;

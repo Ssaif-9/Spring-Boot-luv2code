@@ -1,5 +1,6 @@
 package com.luv2code.springboot.cruddemowithrelationaldatabase.controller;
 
+import com.luv2code.springboot.cruddemowithrelationaldatabase.dtoEntity.InstructorDto;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.entity.Instructor;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.CustomException;
 import com.luv2code.springboot.cruddemowithrelationaldatabase.exception.ExceptionEntity;
@@ -33,6 +34,7 @@ public class InstructorController {
     public List<Instructor> getAllInstructors() {
        return instructorServiceInterface.findAllInstructors();
     }
+
 
     @PutMapping()
     public void updateInstructor(@RequestBody Instructor instructor) {
