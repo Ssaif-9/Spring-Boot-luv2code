@@ -16,6 +16,7 @@ public class UserServiceImp implements UserService {
 
     private final UserRepo userRepo;
     private final EmailService emailService;
+    private final TransactionService transactionService;
 
     @Override
     public BankResponse createAccount(UserRequest userRequest) {
@@ -114,8 +115,14 @@ public class UserServiceImp implements UserService {
                 .messageSubject("Adding Money...")
                 .messageBody(enquiryUser.getFirstName() + " " + enquiryUser.getLastName()+"\nAccount Number : "+enquiryUser.getAccountNumber()+"\nNew Balance : "+enquiryUser.getAccountBalance())
                 .build();
-
         emailService.sendEmailAlert(emailDetail);
+
+        TransactionDto creditTransactionDto =TransactionDto.builder()
+                .accountNumber(enquiryUser.getAccountNumber())
+                .transactionType("Credit")
+                .amount(creditDebitRequest.getAmount())
+                .build();
+        transactionService.saveTransaction(creditTransactionDto);
 
         return BankResponse.builder()
                 .responseCode(AccountUtil.Amount_Credited_code)
@@ -164,6 +171,13 @@ public class UserServiceImp implements UserService {
                     .build();
 
             emailService.sendEmailAlert(emailDetail);
+
+            TransactionDto debitTransactionDto =TransactionDto.builder()
+                    .accountNumber(enquiryUser.getAccountNumber())
+                    .transactionType("Debit")
+                    .amount(creditDebitRequest.getAmount())
+                    .build();
+            transactionService.saveTransaction(debitTransactionDto);
 
             return BankResponse.builder()
                     .responseCode(AccountUtil.Amount_Debited_code)
@@ -220,9 +234,18 @@ public class UserServiceImp implements UserService {
                 .build();
         emailService.sendEmailAlert(sourceEmailDetail);
 
+        TransactionDto sourceTransactionDto =TransactionDto.builder()
+                .accountNumber(sourceUser.getAccountNumber())
+                .transactionType("Debit")
+                .amount(transferRequest.getAmount())
+                .build();
+        transactionService.saveTransaction(sourceTransactionDto);
+
+
         User destinationUser = userRepo.findByAccountNumber(transferRequest.getDestinationAccountNumber());
         destinationUser.setAccountBalance(destinationUser.getAccountBalance().add(transferRequest.getAmount()));
         userRepo.save(destinationUser);
+
 
         EmailDetail destinationesEmailDetail=EmailDetail.builder()
                 .recipient(destinationUser.getEmail())
@@ -232,6 +255,14 @@ public class UserServiceImp implements UserService {
                         +")to your account with number ("+transferRequest.getSourceAccountNumber()+") .")
                 .build();
         emailService.sendEmailAlert(destinationesEmailDetail);
+
+        TransactionDto destinationesTransactionDto =TransactionDto.builder()
+                .accountNumber(destinationUser.getAccountNumber())
+                .transactionType("Credit")
+                .amount(transferRequest.getAmount())
+                .build();
+        transactionService.saveTransaction(destinationesTransactionDto);
+
 
         return BankResponse.builder()
                 .responseCode(AccountUtil.Transfer_Successfully_code)
