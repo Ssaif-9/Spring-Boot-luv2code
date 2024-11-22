@@ -41,12 +41,12 @@ public class UserRestController {
             description = "Http Status 200 SUCCESS"
     )
     @GetMapping("balanceEnquiry")
-    public BankResponse getEnquiryAccounts(@RequestBody EnquiryRequest enquiryRequest) {
+    public BankResponse getEnquiryAccounts(@ModelAttribute EnquiryRequest enquiryRequest) {
         return userService.balanceEnquiry(enquiryRequest);
     }
 
     @GetMapping("nameEnquiry")
-    public String getEnquiryName(@RequestBody EnquiryRequest enquiryRequest) {
+    public String getEnquiryName(@ModelAttribute EnquiryRequest enquiryRequest) {
         return userService.nameEnquiry(enquiryRequest);
     }
 
